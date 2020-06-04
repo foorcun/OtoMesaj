@@ -93,11 +93,11 @@ public class Gruplarim extends AppCompatActivity {
         recyclerView1.setLayoutManager(manager);
 
         //6. aşama asıl datamız
-        Secilen = new ArrayList<>();
-        Secilen.add(new ModelClass("isim1", "no 1"));
-        Secilen.add(new ModelClass("isim2", "no 2"));
-        Secilen.add(new ModelClass("isim3", "no 3"));
-        Secilen.add(new ModelClass("isim4", "no 4"));
+      Secilen = new ArrayList<>();
+//        Secilen.add(new ModelClass("isim1", "no 1"));
+//        Secilen.add(new ModelClass("isim2", "no 2"));
+//        Secilen.add(new ModelClass("isim3", "no 3"));
+//        Secilen.add(new ModelClass("isim4", "no 4"));
 
 
     /*    Secilen.add("DAta 1");

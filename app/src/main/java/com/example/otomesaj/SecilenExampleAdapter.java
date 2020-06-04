@@ -44,6 +44,13 @@ public class SecilenExampleAdapter extends RecyclerView.Adapter<SecilenExampleAd
 
     public void setList(List<ModelClass> secilen) {
         this.secilen = secilen;
+        if (secilen.size() == 0) {
+            Gruplarim.recyclerView1.setVisibility(View.GONE);
+
+        } else {
+            Gruplarim.recyclerView1.setVisibility(View.VISIBLE);
+
+        }
         notifyDataSetChanged();
     }
 

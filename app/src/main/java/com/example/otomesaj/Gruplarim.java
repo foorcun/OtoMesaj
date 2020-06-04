@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,11 +23,24 @@ public class Gruplarim extends AppCompatActivity {
     List<ModelClass> modelClassList;
     Adapter adapter;
 
+
+    private RecyclerView recyclerview_secilen_gruplarim;
+    List<ModelClass> modelClassListSecilen;
+    Secilen_Adapter secilen_adapter;
+
+
+    // example recyler
+    public static List<ModelClass> Secilen;
+    public static RecyclerView recyclerView1;
+    public static SecilenExampleAdapter adapter1;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gruplarim);
-
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -37,17 +51,91 @@ public class Gruplarim extends AppCompatActivity {
 
 
         modelClassList = new ArrayList<>();
-      /*  modelClassList.add(new ModelClass("isim1", "no 1"));
+     /*   modelClassList.add(new ModelClass("isim1", "no 1"));
         modelClassList.add(new ModelClass("isim2", "no 2"));
         modelClassList.add(new ModelClass("isim3", "no 3"));
-        modelClassList.add(new ModelClass("isim4", "no 4"));*/
-
+        modelClassList.add(new ModelClass("isim4", "no 4"));
+*/
 
         loadContacts();
         showContact();
 
-        adapter = new Adapter(modelClassList);
+        adapter = new Adapter(this,(Button)findViewById(R.id.button),modelClassList);
         recyclerView.setAdapter(adapter);
+
+
+
+        //ikinci recycler
+
+        recyclerview_secilen_gruplarim = findViewById(R.id.recyclerview_secilen_gruplarim);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
+        layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+
+        modelClassListSecilen = new ArrayList<>();
+        modelClassListSecilen.add(new ModelClass("isim1", "no 1"));
+        modelClassListSecilen.add(new ModelClass("isim2", "no 2"));
+        modelClassListSecilen.add(new ModelClass("isim3", "no 3"));
+        modelClassListSecilen.add(new ModelClass("isim4", "no 4"));
+
+        secilen_adapter = new Secilen_Adapter(modelClassListSecilen);
+        recyclerview_secilen_gruplarim.setAdapter(secilen_adapter);
+
+
+
+
+        //example recycler
+
+        recyclerView1 = findViewById(R.id.recyclerview_secilen_gruplarim);
+
+        //ikinci aşama
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView1.setLayoutManager(manager);
+
+        //6. aşama asıl datamız
+        Secilen = new ArrayList<>();
+        Secilen.add(new ModelClass("isim1", "no 1"));
+        Secilen.add(new ModelClass("isim2", "no 2"));
+        Secilen.add(new ModelClass("isim3", "no 3"));
+        Secilen.add(new ModelClass("isim4", "no 4"));
+
+
+    /*    Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 1");
+        Secilen.add("DAta 2");
+*/
+        //6. aşama asıl datamız son
+
+
+        //7. aşama adaptere verileri vermek
+        //adapter olşuturduk
+        adapter1 = new SecilenExampleAdapter();
+        adapter1.setList(Secilen); // data input func
+        //adapter olşuturduk
+
+
+        //8. aşama recyclerımıza adapteri vermek
+        recyclerView1.setAdapter(adapter1);
+
+
+
 
 
     }
@@ -110,5 +198,11 @@ public class Gruplarim extends AppCompatActivity {
                     Toast.makeText(this, "need contact permission", Toast.LENGTH_SHORT).show();
                 }
         }
+    }
+
+
+    public void kendinGizle(View v) {
+        v.setVisibility(View.GONE);
+
     }
 }
